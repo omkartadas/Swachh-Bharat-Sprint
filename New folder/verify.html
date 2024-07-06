@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swachh Bharat Sprint - OTP Verification</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="verify.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>OTP Verification</h1>
+        <form id="otpForm" action="/verify" method="post">
+            <label for="otp">Enter OTP</label>
+            <input type="text" id="otp" name="otp" required>
+            <input type="hidden" id="username" name="username">
+            <input type="hidden" id="mobile" name="mobile">
+            <input type="hidden" id="school_id" name="school_id">
+            <input type="hidden" id="password" name="password">
+            
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</body>
+</html>
