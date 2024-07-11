@@ -603,106 +603,60 @@ document.addEventListener('keyup', function(event) {
 
 
 // Send game data to the server
-function sendGameData() {
-  const url = "https://test.smartcookie.in/core/Version7/webservice_game.php";
+async function sendGameData() {
+  const url = "https://test.smartcookie.in/core/webservice_game.php";
   const data = {
-    operation: "self_rewards",
-    SC_Member_ID: "null",
-    Member_type: "student",
-    School_id: "OPEN",
-    mobile_no: "9322625539",
-    user_name: "OmkarTadas",
-    game_id: "sbs101",
-    game_name: "SBS",
-    exps: "null",
-    level: "null",
-    kils: "null",
-    badges: "null",
-    times: "null",
-    score: score,
-    img: "null",
-    times2: "null"
+      operation: "self_rewards",
+      SC_Member_ID: "null",
+      Member_type: "student",
+      School_id: "OPEN",
+      mobile_no: "9322625439",
+      user_name: "OmkarTadas",
+      game_id: "sbs101",
+      game_name: "SBS",
+      exps: "null",
+      level: "null",
+      kils: "null",
+      badges: "null",
+      times: "null",
+      score: score,
+      img: "null",
+      times2: "null"
   };
 
   // Display a loading indicator
-  $('#loading').show();
+  document.getElementById('loading').style.display = 'block';
 
-  $.ajax({
-    url: url,
-    type: 'POST',
-    contentType: 'app lication/json',
-    dataType: 'json',
-    data: JSON.stringify(data),
-    crossDomain: true,
-    success: function (responseData) {
+  try {
+      const response = await fetch(url, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          mode: "no-cors",
+          body: JSON.stringify(data)
+      });
+
+      // Hide the loading indicator
+      document.getElementById('loading').style.display = 'none';
+
+      if (!response.ok) {
+          //throw new Error('Network response was not ok.');
+          console.log ('response:', response);
+      }
+
+      const responseData = await response.json();
       console.log('Success:', responseData);
-      $('#loading').hide();
-      $('#message').text("Data sent successfully!");
-    },
-    error: function (xhr, status, error) {
+      
+      // Display success message to the user
+      document.getElementById('message').innerText = "Data sent successfully!";
+  } catch (error) {
       console.log('Error:', error);
-      $('#loading').hide();
-      $('#message').text("Failed to send data. Please try again.");
-    }
-  });
+
+      // Hide the loading indicator in case of an error
+      document.getElementById('loading').style.display = 'none';
+      
+      // Display error message to the user
+      document.getElementById('message').innerText = "Failed to send data. Please try again.";
+  }
 }
-
-
-// async function sendGameData() {
-//   const url = "https://test.smartcookie.in/core/webservice_game.php";
-//   const data = {
-//       operation: "self_rewards",
-//       SC_Member_ID: "null",
-//       Member_type: "student",
-//       School_id: "OPEN",
-//       mobile_no: "9322625439",
-//       user_name: "OmkarTadas",
-//       game_id: "sbs101",
-//       game_name: "SBS",
-//       exps: "null",
-//       level: "null",
-//       kils: "null",
-//       badges: "null",
-//       times: "null",
-//       score: score,
-//       img: "null",
-//       times2: "null"
-//   };
-
-//   // Display a loading indicator
-//   document.getElementById('loading').style.display = 'block';
-
-//   try {
-//       const response = await fetch(url, {
-//           method: "POST",
-//           headers: {
-//               "Content-Type": "application/json"
-//           },
-//           mode: "no-cors",
-//           body: JSON.stringify(data)
-//       });
-
-//       // Hide the loading indicator
-//       document.getElementById('loading').style.display = 'none';
-
-//       if (!response.ok) {
-//           //throw new Error('Network response was not ok.');
-//           console.log ('response:', response);
-//       }
-
-//       const responseData = await response.json();
-//       console.log('Success:', responseData);
-      
-//       // Display success message to the user
-//       document.getElementById('message').innerText = "Data sent successfully!";
-//   } catch (error) {
-//       console.log('Error:', error);
-
-//       // Hide the loading indicator in case of an error
-//       document.getElementById('loading').style.display = 'none';
-      
-//       // Display error message to the user
-//       document.getElementById('message').innerText = "Failed to send data. Please try again.";
-//   }
-// }
-

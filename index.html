@@ -1,11 +1,35 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Swachh Bharat</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    #loading {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: black;
+    }
+    #message {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: black;
+    }
+  </style>
 </head>
 <body>
   <audio id="bgm" src="./assets/bgm.wav"></audio>
   <canvas id="gameCanvas" width="960" height="540"></canvas>
+  <div id="loading">Sending data...</div>
+  <div id="message"></div>
   <script src="game.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+  
 </body>
 </html>
