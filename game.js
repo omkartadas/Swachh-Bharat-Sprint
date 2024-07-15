@@ -610,7 +610,7 @@ function sendGameData() {
     SC_Member_ID: "null",
     Member_type: "student",
     School_id: "OPEN",
-    mobile_no: "9322625539",
+    mobile_no: "9322628939",
     user_name: "OmkarTadas",
     game_id: "sbs101",
     game_name: "SBS",
